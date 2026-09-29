@@ -1,4 +1,5 @@
 // [EXTRA] Scanner e uma classe pronta do Java usada para ler o teclado.
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,8 +8,7 @@ public class JogoPesca {
     // [EXTRA] O metodo main e o ponto inicial de um programa Java.
     // String[] args faz parte do formato padrao do main.
     public static void main(String[] args) {
-
-        Scanner teclado = new Scanner(System.in);
+        Scanner teclado = new Scanner(System.in);    
         Random random = new Random();
 
         // Criacao de um objeto da classe Jogador usando o construtor.
@@ -16,14 +16,14 @@ public class JogoPesca {
 
         Vara vara = new Vara();
 
-        int opcao = 0;
+
 
         System.out.println("============================");
         System.out.println("       JOGO DE PESCA");
         System.out.println("============================");
 
         // [EXTRA] while repete o jogo ate o usuario escolher sair.
-        while (opcao != 4) {
+        while (true) {
 
             System.out.println("\n------ STATUS ------");
             jogador.mostrarStatus();
@@ -35,7 +35,17 @@ public class JogoPesca {
             System.out.println("4 - Sair");
             System.out.print("Escolha: ");
 
-            opcao = teclado.nextInt();
+            int opcao;
+
+            try
+            {
+                opcao = teclado.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("\n A opcao deve ser um inteiro correspondente a uma das informacoes acima");
+                teclado.nextLine();
+                continue;
+            }
 
             // [EXTRA] switch escolhe o que fazer de acordo com a opcao digitada.
             switch (opcao) {
@@ -68,8 +78,6 @@ public class JogoPesca {
                     vara.Desgastar();
 
                     System.out.println("\nVoce pescou!\n");
-                    System.out.println("Peixe: " + peixe.nome);
-                    System.out.println("Raridade: " + peixe.raridade);
                     System.out.println("Valor recebido: R$ " + valorFinal);
                     break;
 
@@ -100,13 +108,12 @@ public class JogoPesca {
 
                 case 4:
                     System.out.println("Obrigado por jogar!");
-                    break;
+                    teclado.close();
+                    return;
 
                 default:
                     System.out.println("Opcao invalida.");
             }
         }
-
-        teclado.close();
     }
 }
