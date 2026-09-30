@@ -1,12 +1,9 @@
-// Classe que representa o jogador.
 class Jogador {
-    // Atributos do jogador.
-    String nome;
     int dinheiro;
+    long ultimaPesca = 0;
 
     // Construtor: define os valores iniciais do jogador.
     Jogador(String nomeJogador) {
-        nome = nomeJogador;
         dinheiro = 100;
     }
 
@@ -18,6 +15,5 @@ class Jogador {
     // Metodo que mostra os dados atuais do jogador.
     void mostrarStatus() {
         System.out.println("Dinheiro: R$ " + dinheiro);
-        
     }
 }
