@@ -1,18 +1,16 @@
 class Jogador {
     int dinheiro;
-    long ultimaPesca = 0;
+    long ultimaPesca;
 
-    // Construtor: define os valores iniciais do jogador.
-    Jogador(String nomeJogador) {
-        dinheiro = 100;
+    Jogador() {
+        this.dinheiro = 100;
+        this.ultimaPesca = 0;
     }
 
-    // Metodo para receber dinheiro depois de pescar.
     void receberDinheiro(int valor) {
         dinheiro = dinheiro + valor;
     }
 
-    // Metodo que mostra os dados atuais do jogador.
     void mostrarStatus() {
         System.out.println("Dinheiro: R$ " + dinheiro);
     }
