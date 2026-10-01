@@ -4,14 +4,11 @@ import java.util.Scanner;
 
 public class JogoPesca {
 
-    // [EXTRA] O metodo main e o ponto inicial de um programa Java.
-    // String[] args faz parte do formato padrao do main.
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         Random random = new Random();
 
-        // Criacao de um objeto da classe Jogador usando o construtor.
-        Jogador jogador = new Jogador("Pescador");
+        Jogador jogador = new Jogador();
 
         Vara vara = new Vara();
 
@@ -41,10 +38,8 @@ public class JogoPesca {
                 continue;
             }
 
-            // [EXTRA] switch escolhe o que fazer de acordo com a opcao digitada.
             switch (opcao) {
                 case 1:
-                    // [EXTRA] if verifica se a vara ainda pode ser usada.
                     if (vara.GetDurabilidade() <= 0) {
                         System.out.println("Sua vara esta quebrada. Conserte primeiro!");
                         break;
@@ -63,7 +58,6 @@ public class JogoPesca {
                     int sorteio = random.nextInt(100) + 1;
                     Peixe peixe;
 
-                    // O sorteio define qual objeto Peixe sera criado.
                     if (sorteio <= 70) {
                         peixe = new Peixe("Tilapia", "Comum", 10);
                     } else if (sorteio <= 90) {
@@ -74,7 +68,7 @@ public class JogoPesca {
                         peixe = new Peixe("Marlin", "Lendario", 600);
                     }
 
-                    // Mutiplicar o valor do peixe pelo valor nivel da vara
+
                     int valorFinal = (int) (peixe.valor * (1.0 + (vara.GetNivel() * 0.10)));
 
                     jogador.receberDinheiro(valorFinal);

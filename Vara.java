@@ -29,6 +29,7 @@ public class Vara {
         return 150 * this._nivel;
     }
 
+    //gerar o tempo de cooldown considerando o no nivel do jogador, com tempo de espera minimo de 500 ms 
     public long GetCooldownMs(){
         double fatorReducao = Math.pow(0.9, this._nivel - 1);
         long valorCalculado = (long) (5000 * fatorReducao);
