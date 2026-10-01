@@ -16,19 +16,31 @@ public class Vara {
     public int GetNivel(){
         return this._nivel;
     }
+
     public int GetDurabilidade(){
         return this._durabilidade;
     }
+
     public int GetDurabilidadeMaxima(){
         return this._durabilidadeMaxima;
     }
+
     public int GetCustoEvoluir(){
         return 150 * this._nivel;
     }
+
+    public long GetCooldownMs(){
+        double fatorReducao = Math.pow(0.9, this._nivel - 1);
+        long valorCalculado = (long) (5000 * fatorReducao);
+        long valorFinal = Math.max(500, valorCalculado);
+
+        return valorFinal;
+    }
+
     public int GetCustoConserto(){
         return 40 * this._nivel;
     }
-    
+
     public void Evoluir(){
         ++this._nivel;
         this._durabilidadeMaxima += 25;
